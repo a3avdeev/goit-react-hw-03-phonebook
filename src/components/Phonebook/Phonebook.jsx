@@ -27,6 +27,13 @@ export default class Phonebook extends Component {
             localStorage.setItem("contacts", JSON.stringify(contacts));
         }
     }
+  
+    shouldComponentUpdate(nextProps, nextState) {
+      if (this.state === nextState) {
+        return false;
+      }
+      return true;
+    }
 
     componentWillUnmount() {
         localStorage.removeItem("contacts");
