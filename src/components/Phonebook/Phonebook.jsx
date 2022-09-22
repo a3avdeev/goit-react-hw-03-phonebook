@@ -37,6 +37,7 @@ export default class Phonebook extends Component {
 
     componentWillUnmount() {
         localStorage.removeItem("contacts");
+      console.log('componentWillUnmount')
     }
 
     handleChange = (event) => {
