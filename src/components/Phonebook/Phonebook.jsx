@@ -23,21 +23,16 @@ export default class Phonebook extends Component {
 
     componentDidUpdate(prevProps, prevState) {
         const { contacts } = this.state;
-        if (prevState.contacts !== contacts) {
+        if (contacts !== prevState.contacts) {
             localStorage.setItem("contacts", JSON.stringify(contacts));
         }
     }
-  
-    shouldComponentUpdate(nextProps, nextState) {
-      if (this.state === nextState) {
-        return false;
-      }
-      return true;
-    }
 
     componentWillUnmount() {
-        localStorage.removeItem("contacts");
-      console.log('componentWillUnmount')
+        if (this.state.contacts.length === 0) {
+            localStorage.removeItem("contacts");
+            console.log('componentWillUnmount');
+        }
     }
 
     handleChange = (event) => {
